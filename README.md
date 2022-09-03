@@ -95,7 +95,7 @@ $ docker run --gpus all --rm -it -p 8000-8002:8000-8002 --name triton_mnist -v $
 - Use `-v` to mount the volumes into the container. Here $PWD points to the current directory, assuming your model is located in the same directory.
 - The docker image name is: `nvcr.io/nvidia/tritonserver:22.08-py3` or you can specify docker `<image-tag>`
 - Use `--model-repository=/models` points to the directory containing the model name and the files inside it. (Directory structure is very important)
-- `strict-model-config=false` This flag allows the Triton Server to auto-configure for the given model. Alternatively, a specific config.pbtxt can be created to specify the config. But that is again beyond the scope of this article, and more information can be found here: [Triton Model Configuration Readme.](https://github.com/triton-inference-server/server/blob/main/docs/model_configuration.md)
+- `strict-model-config=false` This flag allows the Triton Server to auto-configure for the given model. Alternatively, a specific config.pbtxt can be created to specify the config and more information can be found here: [Triton Model Configuration Readme.](https://github.com/triton-inference-server/server/blob/main/docs/model_configuration.md)
 
 After you start Triton you will see output on the console showing the server starting up and loading the model. When you see output like the following, Triton is ready to accept inference requests.
 
