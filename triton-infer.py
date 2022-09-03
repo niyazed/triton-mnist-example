@@ -38,14 +38,7 @@ if __name__ == '__main__':
     output = np.squeeze(results.as_numpy('output_1'))
     pred = postprocess_output(output)
 
-    print(pred)
-
-
-
-
-
-
-
+    print(f"HTTP Service | Prediction: {pred}")
 
 
 
@@ -55,14 +48,17 @@ if __name__ == '__main__':
     import tritonclient.grpc as grpcclient
 
     # Create the inference context for the model.
-    # model_name = "mnist_model"
-    # model_version = 1
-    # triton_client = grpcclient.InferenceServerClient(url="localhost:8001")
-    # inputs = []
-    # outputs = []
-    # inputs.append(grpcclient.InferInput('input_1', [1, 28, 28, 1], "FP32"))
-    # inputs[0].set_data_from_numpy(image)
-    # outputs.append(grpcclient.InferRequestedOutput('output_1'))
-    # results = triton_client.infer(model_name, inputs, outputs=outputs)
-    # print(results)
+    model_name = "mnist_model"
+    model_version = 1
+    triton_client = grpcclient.InferenceServerClient(url="localhost:8001")
+    inputs = []
+    outputs = []
+    inputs.append(grpcclient.InferInput('input_1', [1, 28, 28, 1], "FP32"))
+    inputs[0].set_data_from_numpy(image)
+    outputs.append(grpcclient.InferRequestedOutput('output_1'))
+    results = triton_client.infer(model_name, inputs, outputs=outputs)
+    output = np.squeeze(results.as_numpy('output_1'))
+    pred = postprocess_output(output)
+
+    print(f"gRPC Service | Prediction: {pred}")
 

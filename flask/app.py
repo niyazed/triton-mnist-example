@@ -4,7 +4,7 @@ import tensorflow as tf
 from PIL import Image
 import climage
 
-MODEL_PATH = 'mnist_model'
+MODEL_PATH = 'model_repository/mnist_model/1/model.savedmodel/'
 
 app = Flask(__name__)
 app.config['DEBUG'] = False
@@ -40,4 +40,5 @@ def hand_classifier():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000', threaded=True, use_reloader=True)
-    # curl -X POST -F image=@images/sample_image.png http://127.0.0.1:5000/mnist_infer
+
+    # curl -X POST -F image=@images/sample_image.png http://127.0.0.1:5000/mnist_infercurl -X POST -F image=@images/sample_image.png http://127.0.0.1:5000/mnist_infer
