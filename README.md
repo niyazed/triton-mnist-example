@@ -1,4 +1,8 @@
 # MNIST inference on NVIDIA Triton
+![model-serving-diagram.png](images/model-serving-diagram.png)
+As shown in the diagram, the primary advantage that a model server provides is its ability to “serve” multiple client requests simultaneously. This means that if multiple applications are using the same model to run inference, then a model server is the way to go.
+
+This extends to a second advantage, that is, since the same server is serving multiple client requests simultaneously, the model does not consume excessive CPU/GPU memory. The memory footprint roughly remains the same as that of a single model. Further, the model server can be hosted on a remote server (e.g., AWS, Azure, or GCP), or locally in the same physical system as your client(s). The inference latency would vary depending on the closeness of the server to the client(s) and the network bandwidth. Though a large number of simultaneous requests would slow down the inference speed significantly, in which case, multiple instances of the model server can be hosted, and the hosting hardware can be scaled up as a solution.
 
 ## 1. Flask (Custom) Model Server
 We need a model. So, let’s train one! Feel free to use any compatible model, I am using the official Keras MNIST example, and save the model in TensorFlow SavedModel format.
