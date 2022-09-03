@@ -136,6 +136,9 @@ gRPC Service | Prediction: 7
 ```
 ----
 
+### Todo
+- Dockerfile and Docker Compose
+
 ### Reference
 - https://github.com/triton-inference-server/server/blob/main/docs/quickstart.md
 - https://hackernoon.com/deploying-deep-learning-models-with-model-server
