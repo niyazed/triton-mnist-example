@@ -142,6 +142,7 @@ gRPC Service | Prediction: 7
 ### Reference
 - https://github.com/triton-inference-server/server/blob/main/docs/quickstart.md
 - https://hackernoon.com/deploying-deep-learning-models-with-model-server
+- https://chroniclesofai.com/mlops-chapter-8-model-server-wth-nvidia-triton-local/
 - https://www.megatrend.com/en/machine-learning-deployment-services%EF%BF%BC/
 
 
