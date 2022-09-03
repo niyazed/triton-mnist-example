@@ -1,8 +1,8 @@
 # MNIST inference on NVIDIA Triton
 
-## Flask (Custom) Model Server
+## 1. Flask (Custom) Model Server
 We need a model. So, let’s train one! Feel free to use any compatible model, I am using the official Keras MNIST example, and save the model in TensorFlow SavedModel format.
-- Run the training script to train and save the model.
+#### 1.1 Run the training script to train and save the model.
 ```sh
 $ python train.py
 ```
@@ -54,6 +54,8 @@ $ curl -X POST -F image=@images/sample_image.png http://127.0.0.1:5000/mnist_inf
 {"Prediction":"7"}
 ```
 
+----
+
 ## Triton Inference Server
 #### Install Triton Docker Image
 
@@ -72,7 +74,6 @@ Where \<xx.yy\> is the version of Triton that you want to pull. I am using `22.0
 #### Run Triton Server
 Triton is optimized to provide the best inferencing performance by using GPUs, but it can also work on CPU-only systems. In both cases you can use the same Triton Docker image.
 
------
 
 Use the following command to run Triton with the example model
 repository you just created. The [NVIDIA Container
@@ -111,12 +112,12 @@ I0903 14:02:06.081332 1 http_server.cc:178] Started Metrics Service at 0.0.0.0:8
 #### 📄 NOTE - If a model fails to load the status will report the failure and a reason for the failure. If your model is not displayed in the table check the path to the model repository and your CUDA drivers.
 
 
-### Verify Triton Is Running Correctly
+#### Verify Triton Is Running Correctly
 If you have followed all instructions properly, then you should find the JSON model config by visiting http://localhost:8000/v2/models/mnist_model/config on your browser. 
 
 The general format for this URL is: `http://<host-ip-address>:<mapped-http-port>/v2/models/<model-name>/config`
 
------
+
 In my script, I included the both client example:
 - HTTP client
 - gRPC client
@@ -128,7 +129,13 @@ $ python triton-infer.py
 # Response
 HTTP Service | Prediction: 7
 gRPC Service | Prediction: 7
-
 ```
+----
 
-That's all about Triton, if you love this work don't forget to 🌟 star. Thanks
+### Reference
+- https://github.com/triton-inference-server/server/blob/main/docs/quickstart.md
+- https://hackernoon.com/deploying-deep-learning-models-with-model-server
+- https://www.megatrend.com/en/machine-learning-deployment-services%EF%BF%BC/
+
+
+That's all about Triton, if you love my work don't forget to 🌟 star. Thanks
