@@ -7,7 +7,7 @@ We need a model. So, let’s train one! Feel free to use any compatible model, I
 $ python train.py
 ```
 
-#### 📄 NOTE - The Triton server expects the models and their metadata to be arranged in a specific format. The following is an example for the TensorFlow and PyTorch model, respectively:
+> 📄 NOTE - The Triton server expects the models and their metadata to be arranged in a specific format. The following is an example for the TensorFlow and PyTorch model, respectively:
 ```
 tfmobilenet
 ├── 1
@@ -42,11 +42,11 @@ Move the SavedModel contents to `model_repository/<model-name>/1/model.savedmode
 ```
 
 
-- Run inference script which is integrated with Flask to host it as a server which will act as the “model server”.
+#### 1.2 Run inference script which is integrated with Flask to host it as a server which will act as the “model server”.
 ```sh
 $ python flask/server.py
 ```
-- Test the model server using curl.
+#### 1.3 Test the model server using curl.
 ```sh
 $ curl -X POST -F image=@images/sample_image.png http://127.0.0.1:5000/mnist_infer
 
@@ -56,8 +56,8 @@ $ curl -X POST -F image=@images/sample_image.png http://127.0.0.1:5000/mnist_inf
 
 ----
 
-## Triton Inference Server
-#### Install Triton Docker Image
+## 2. Triton Inference Server
+#### 2.1 Install Triton Docker Image
 
 Before you can use the Triton Docker image you must install
 [Docker](https://docs.docker.com/engine/install). If you plan on using
@@ -71,7 +71,7 @@ $ docker pull nvcr.io/nvidia/tritonserver:<xx.yy>-py3
 
 Where \<xx.yy\> is the version of Triton that you want to pull. I am using `22.08` currently.
 
-#### Run Triton Server
+#### 2.2 Run Triton Server
 Triton is optimized to provide the best inferencing performance by using GPUs, but it can also work on CPU-only systems. In both cases you can use the same Triton Docker image.
 
 
@@ -109,15 +109,15 @@ I0903 14:02:06.035974 1 grpc_server.cc:4610] Started GRPCInferenceService at 0.0
 I0903 14:02:06.038149 1 http_server.cc:3316] Started HTTPService at 0.0.0.0:8000
 I0903 14:02:06.081332 1 http_server.cc:178] Started Metrics Service at 0.0.0.0:8002
 ```
-#### 📄 NOTE - If a model fails to load the status will report the failure and a reason for the failure. If your model is not displayed in the table check the path to the model repository and your CUDA drivers.
+> 📄 NOTE - If a model fails to load the status will report the failure and a reason for the failure. If your model is not displayed in the table check the path to the model repository and your CUDA drivers.
 
 
-#### Verify Triton Is Running Correctly
+#### 2.3 Verify Triton Is Running Correctly
 If you have followed all instructions properly, then you should find the JSON model config by visiting http://localhost:8000/v2/models/mnist_model/config on your browser. 
 
 The general format for this URL is: `http://<host-ip-address>:<mapped-http-port>/v2/models/<model-name>/config`
 
-
+#### 2.4 Finally, Run Inference
 In my script, I included the both client example:
 - HTTP client
 - gRPC client
