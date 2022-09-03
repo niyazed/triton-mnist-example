@@ -4,7 +4,7 @@ import tensorflow as tf
 from PIL import Image
 import climage
 import tritonclient.http as httpclient
-
+import tritonclient.grpc as grpcclient
 
 
 
@@ -42,10 +42,6 @@ if __name__ == '__main__':
 
 
 
-
-    # inference tritonclient grpc request
-
-    import tritonclient.grpc as grpcclient
 
     # Create the inference context for the model.
     model_name = "mnist_model"
